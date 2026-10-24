@@ -4,16 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Support · Formaitre</title>
+<link rel="preload" href="/fonts/LibreBaskerville.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <a class="wordmark" href="/">Formaitre</a>
-    <nav><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav>
-  </header>
+<div class="palette">
 
-  <h1>Support</h1>
+<header class="site-header">
+  <a class="wordmark flowfill" href="/">Formaitre</a>
+  <nav aria-label="Main">
+    <a href="/#apps">Apps</a>
+    <a href="/#how">How it works</a>
+    <a href="/support/">Support</a>
+    <a href="mailto:hello@formaitre.com" class="gbtn small">Request access</a>
+  </nav>
+</header>
+
+<main class="page">
+<h1>Support</h1>
   <p class="lead">Email us at <a href="mailto:hello@formaitre.com">hello@formaitre.com</a>. We usually reply within one business day.</p>
 
   <h2>Getting started</h2>
@@ -29,12 +38,20 @@
   <p>Choose "Forgot password" on the sign-in screen. The email lets you reset it with the button or by typing the code in the app.</p>
   <h3>Deleting your account</h3>
   <p>Open Settings in any Formaitre app and choose "Delete account". If you're the only Admin of a restaurant, make someone else an Admin (or delete the restaurant) first.</p>
+</main>
 
-  <footer>
-    <span>© 2026 Formaitre LLC</span>
-    <a href="/support/">Support</a>
-    <a href="/privacy/">Privacy policy</a>
-  </footer>
+<footer class="site-footer">
+  <div class="inner">
+    <span class="wordmark flowfill">Formaitre</span>
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy</a>
+      <a href="/support/">Support</a>
+      <a href="mailto:hello@formaitre.com">Contact</a>
+    </nav>
+    <span>© 2026 Formaitre LLC · Dallas, Texas</span>
+  </div>
+</footer>
+
 </div>
 </body>
 </html>

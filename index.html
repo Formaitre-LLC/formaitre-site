@@ -4,35 +4,103 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Formaitre</title>
-<meta name="description" content="Formaitre makes apps for restaurant teams: Flow for wine and beverage, Loom for guests, Canon for recipes and training, Star for managers.">
+<meta name="description" content="The apps a restaurant team actually uses during service: Flow, Loom, Canon and Star.">
+<link rel="preload" href="/fonts/LibreBaskerville.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <a class="wordmark" href="/">Formaitre</a>
-    <nav><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav>
-  </header>
+<div class="palette">
 
-  <h1>The tools a great restaurant team runs on.</h1>
-  <p class="lead">Four connected apps for restaurants, sharing one account and one team, so what the kitchen knows, the floor knows.</p>
-
-  <div class="apps">
-    <div class="app"><strong>Flow</strong><span>Wine and beverage: your list, counts and pairings.</span></div>
-    <div class="app"><strong>Loom</strong><span>Guests: who's coming in, and what they love.</span></div>
-    <div class="app"><strong>Canon</strong><span>Recipes, allergens, SOPs and training.</span></div>
-    <div class="app"><strong>Star</strong><span>The manager's view across every app.</span></div>
-  </div>
-
-  <h2>Invite-only for now</h2>
-  <p>We're opening Formaitre to a small group of restaurants first. Download any of the apps and choose "Request access", or email us.</p>
-  <p><a class="button" href="mailto:hello@formaitre.com?subject=Formaitre%20access">Email hello@formaitre.com</a></p>
-
-  <footer>
-    <span>© 2026 Formaitre LLC</span>
+<header class="site-header">
+  <nav aria-label="Main">
+    <a href="#apps">Apps</a>
+    <a href="#how">How it works</a>
     <a href="/support/">Support</a>
-    <a href="/privacy/">Privacy policy</a>
-  </footer>
+    <a href="mailto:hello@formaitre.com" class="gbtn small">Request access</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="flowaura" aria-hidden="true"></div>
+  <h1 class="flowfill rise1">Formaitre</h1>
+  <p class="tagline rise2">Built for the floor, not the back office.</p>
+  <p class="intro rise3">The apps a restaurant team actually uses during service. The wine list, the guests, the standards and the numbers, in every pocket and always current.</p>
+  <div class="actions rise4">
+    <a href="mailto:hello@formaitre.com" class="gbtn">Request access</a>
+    <a href="#apps" class="obtn">See the apps</a>
+  </div>
+</section>
+
+<section id="apps" class="apps">
+  <div class="section-head pop">
+    <h2>Four apps. One account.</h2>
+    <p>Each app does one job well. Sign in once and use whichever your team needs.</p>
+  </div>
+  <div class="app-grid">
+    <article class="app-card pop">
+      <img src="/assets/flow-icon.png" alt="">
+      <h3 class="g-flow">Flow</h3>
+      <div class="kicker">Wine list, counts &amp; service</div>
+      <p>Search the list in plain words, sell with confidence, and count inventory as a team.</p>
+    </article>
+    <article class="app-card pop2">
+      <img src="/assets/loom-icon.png" alt="">
+      <h3 class="g-loom">Loom</h3>
+      <div class="kicker">Guest notes for hospitality</div>
+      <p>Remember every guest like a regular, with notes the whole team can trust.</p>
+    </article>
+    <article class="app-card pop3">
+      <img src="/assets/canon-icon.png" alt="">
+      <h3 class="g-canon">Canon</h3>
+      <div class="kicker">SOPs, recipes &amp; allergens</div>
+      <p>Every procedure and allergen, searchable in seconds and always current.</p>
+    </article>
+    <article class="app-card pop4">
+      <img src="/assets/star-icon.png" alt="">
+      <h3 class="g-star">Star</h3>
+      <div class="kicker">The manager's home base</div>
+      <p>Set the team's focus and see what's working, all in one place.</p>
+    </article>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="how-grid">
+    <div class="pop">
+      <h3>Made for service</h3>
+      <p>Answers in two taps, on the phone already in every pocket. No desktop, no binder.</p>
+    </div>
+    <div class="pop2">
+      <h3>Changes you can trust</h3>
+      <p>New entries are approved before they go live, and every change keeps its history.</p>
+    </div>
+    <div class="pop3">
+      <h3>Your data stays yours</h3>
+      <p>Each restaurant's information is private to that restaurant. We never sell it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta pop">
+  <div class="flowaura" aria-hidden="true"></div>
+  <h2>Bring Formaitre to your restaurant.</h2>
+  <p>We're opening with a small group of restaurants. Tell us about yours and we'll be in touch.</p>
+  <a href="mailto:hello@formaitre.com" class="gbtn">Request access</a>
+</section>
+
+<footer class="site-footer">
+  <div class="inner">
+    <span class="wordmark flowfill">Formaitre</span>
+    <nav aria-label="Footer">
+      <a href="/privacy/">Privacy</a>
+      <a href="/support/">Support</a>
+      <a href="mailto:hello@formaitre.com">Contact</a>
+    </nav>
+    <span>© 2026 Formaitre LLC · Dallas, Texas</span>
+  </div>
+</footer>
+
 </div>
 </body>
 </html>
