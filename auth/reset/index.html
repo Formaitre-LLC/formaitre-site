@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reset password · Formaitre</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap narrow">
+  <div class="card">
+    <span class="wordmark">Formaitre</span>
+    <div id="choose">
+      <p>Choose a new password (at least 10 characters).</p>
+      <form id="form" novalidate>
+        <label for="password">New password</label>
+        <input id="password" type="password" autocomplete="new-password" minlength="10" required>
+        <label for="again">New password again</label>
+        <input id="again" type="password" autocomplete="new-password" minlength="10" required>
+        <p id="problem" class="status-error hidden" role="alert"></p>
+        <button class="button" type="submit">Save new password</button>
+      </form>
+    </div>
+    <div id="done" class="hidden">
+      <p class="status-ok"><strong>Password updated — return to the app.</strong></p>
+      <p>Sign in with your email and your new password.</p>
+      <p><a id="open-app" class="button hidden" href="#">Open the app</a></p>
+    </div>
+    <div id="failed" class="hidden">
+      <p class="status-error"><strong>This link has expired or was already used.</strong></p>
+      <p>Open the app and choose "Forgot password" again, or type the 6-digit code from the email.</p>
+    </div>
+  </div>
+</div>
+<script src="/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"
+        integrity="sha384-g8TQpKstPpyDTjwOLNQvGR++9KAGGvtxWv+P5XmDd3QZQx1jie8r1hx0gVpD+cdb" crossorigin="anonymous"></script>
+<script src="/auth/shared.js"></script>
+<script>
+(() => {
+  const { tokenHash, type, app } = FormaitreAuth.readLink();
+  const show = (id) => {
+    for (const s of ["choose", "done", "failed"]) document.getElementById(s).classList.toggle("hidden", s !== id);
+  };
+  if (!tokenHash || type !== "recovery") return show("failed");
+
+  const form = document.getElementById("form");
+  const problem = document.getElementById("problem");
+  const say = (text) => { problem.textContent = text; problem.classList.toggle("hidden", !text); };
+
+  // The one-time token is used only when the person saves, so email link
+  // scanners that open the page can't use it up.
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const password = document.getElementById("password").value;
+    if (password.length < 10) return say("Use at least 10 characters.");
+    if (password !== document.getElementById("again").value) return say("The two passwords don't match.");
+    say("");
+    form.querySelector("button").disabled = true;
+
+    const client = FormaitreAuth.client();
+    const { error: linkError } = await client.auth.verifyOtp({ token_hash: tokenHash, type: "recovery" });
+    if (linkError) return show("failed");
+    const { error } = await client.auth.updateUser({ password });
+    if (error) {
+      form.querySelector("button").disabled = false;
+      return say(error.message || "That password can't be used. Try another.");
+    }
+    FormaitreAuth.offerApp(document.getElementById("open-app"), app);
+    show("done");
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Confirm email · Formaitre</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap narrow">
+  <div class="card">
+    <span class="wordmark">Formaitre</span>
+    <p id="working">Confirming your email…</p>
+    <div id="done" class="hidden">
+      <p class="status-ok"><strong>Email confirmed — return to the app.</strong></p>
+      <p id="next-step">You can now sign in with your email and password.</p>
+      <p><a id="open-app" class="button hidden" href="#">Open the app</a></p>
+    </div>
+    <div id="failed" class="hidden">
+      <p class="status-error"><strong>This link has expired or was already used.</strong></p>
+      <p>If your email isn't confirmed yet, open the app and choose "Resend", or type the 6-digit code from the email.</p>
+    </div>
+  </div>
+</div>
+<script src="/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"
+        integrity="sha384-g8TQpKstPpyDTjwOLNQvGR++9KAGGvtxWv+P5XmDd3QZQx1jie8r1hx0gVpD+cdb" crossorigin="anonymous"></script>
+<script src="/auth/shared.js"></script>
+<script>
+(async () => {
+  const { tokenHash, type, app } = FormaitreAuth.readLink();
+  const show = (id) => { document.getElementById("working").classList.add("hidden"); document.getElementById(id).classList.remove("hidden"); };
+  if (!tokenHash || !["signup", "email", "email_change"].includes(type)) return show("failed");
+
+  const client = FormaitreAuth.client();
+  const { error } = await client.auth.verifyOtp({ token_hash: tokenHash, type });
+  if (error) return show("failed");
+
+  if (type === "email_change") document.getElementById("next-step").textContent = "Your new email address is confirmed.";
+  FormaitreAuth.offerApp(document.getElementById("open-app"), app);
+  show("done");
+})();
+</script>
+</body>
+</html>
